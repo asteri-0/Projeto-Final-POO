@@ -1,0 +1,26 @@
+package enuns;
+
+public enum CategoriaGenero {
+    ROCK,
+    MPB,
+    INDIE,
+    JAZZ,
+    POP,
+    SAMBA,
+    ELETRONICA,
+    RAP,
+    PAGODE,
+    FICCAO_CIENTIFICA,
+    LITERATURA_BRASILEIRA,
+    LITERATURA_ESTRANGEIRA,
+    ROMANCE,
+    SOCIOLOGIA,
+    FILOSOFIA,
+    MATEMATICA,
+    COMPUTACAO,
+    ATUALIDADES,
+    INFANTOJUVENIL,
+    PORTUGUES,
+
+}
+
