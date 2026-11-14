@@ -1,6 +1,6 @@
 package acervo;
 
-public class ItensDoAcervo {
+public abstract class ItensDoAcervo {
     //atributos da classe pai
     private String localizacao;
     private double codigoDeRegistrio;
@@ -50,5 +50,29 @@ public class ItensDoAcervo {
         this.localizacao = localizacao;
         this.statusItem = statusItem;
         this.titulo = titulo;
+    }
+
+    public double getCodigoDeRegistrio() {
+        return codigoDeRegistrio;
+    }
+
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public int getAnoDePublicacao() {
+        return anoDePublicacao;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public CategoriaGenero getGeneroCategoria() {
+        return generoCategoria;
+    }
+
+    public ItemStatus getStatusItem() {
+        return statusItem;
     }
 }
