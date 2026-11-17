@@ -1,4 +1,5 @@
-import acervo.ItensDoAcervo;
+package acervo;
+
 import enuns.CategoriaGenero;
 import enuns.ItemStatus;
 
