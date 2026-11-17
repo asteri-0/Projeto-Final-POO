@@ -16,6 +16,7 @@ public class Livro extends ItensDoAcervo{
         this.numeroDePaginas = numeroDePaginas;
         this.editora = editora;
     }
+
     public int getNumeroDePaginas() {
         return numeroDePaginas;
     }
