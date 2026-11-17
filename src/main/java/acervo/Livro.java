@@ -6,12 +6,15 @@ import enuns.ItemStatus;
 public class Livro extends ItensDoAcervo{
     private String isbn;
     private int numeroDePaginas;
+    private String editora;
 
     public Livro(String localizacao, String codigoDeRegistro, String titulo,
                  int anoDePublicacao, CategoriaGenero generoCategoria, ItemStatus statusItem,
-                 String isbn, int numeroDePaginas) {
+                 String isbn, int numeroDePaginas, String editora) {
         super(localizacao,codigoDeRegistro, titulo, anoDePublicacao, generoCategoria, statusItem);
-
+        this.isbn = isbn;
+        this.numeroDePaginas = numeroDePaginas;
+        this.editora = editora;
     }
     public int getNumeroDePaginas() {
         return numeroDePaginas;
