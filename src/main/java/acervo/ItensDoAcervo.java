@@ -47,4 +47,8 @@ public abstract class ItensDoAcervo {
     public ItemStatus getStatusItem() {
         return statusItem;
     }
+
+    public void setStatusItem(ItemStatus statusItem) {
+        this.statusItem = statusItem;
+    }
 }
