@@ -20,6 +20,10 @@ public class Cliente {
         numeroEmprestimos = 0;
     }
 
+    public ClienteStatus getStatusCliente() {
+        return statusCliente;
+    }
+
     public String getNome() {
         return nome;
     }
