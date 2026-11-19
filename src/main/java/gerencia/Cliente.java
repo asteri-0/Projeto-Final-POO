@@ -1,6 +1,7 @@
 package gerencia;
 
 import java.time.*;
+import enuns.ClienteStatus;
 
 public class Cliente {
     private String nome;
@@ -8,12 +9,15 @@ public class Cliente {
     private String telefone;
     private LocalDate dataNascimento;
     private int numeroEmprestimos;
+    private ClienteStatus statusCliente;
 
     public Cliente (String nome, String cpf, String telefone,  LocalDate dataNascimento) {
         this.nome = nome;
         this.telefone = telefone;
         this.cpf = cpf;
         this.dataNascimento = dataNascimento;
+        statusCliente = ClienteStatus.SEM_EMPRESTIMO;
+        numeroEmprestimos = 0;
     }
 
     public String getNome() {
