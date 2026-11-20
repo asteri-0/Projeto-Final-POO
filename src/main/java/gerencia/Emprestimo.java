@@ -5,63 +5,61 @@ import java.time.temporal.ChronoUnit;
 
 import enuns.ClienteStatus;
 import enuns.ItemStatus;
-import gerencia.Cliente;
 import acervo.ItensDoAcervo;
-import jdk.vm.ci.meta.Local;
 
 public class Emprestimo {
     //classe na qual ficam as regras de emprestimo do sistema e gerencia a permissão de emprestar
-    private LocalDate dataEmprestimo = dataDevolucaoPrevista.;
+    private LocalDate dataEmprestimo;
     private LocalDate dataDevolucaoPrevista;
     private LocalDate dataDevolucaoReal;
     private double diasAtrasado;
     private ItensDoAcervo item; // atributo geral para as classes filhas poderem usar por herança
     private Cliente cliente;
 
+
     /* Construtor */
-    private Emprestimo(LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista, LocalDate dataDevolucaoReal,
-                      double diasAtrasado, ItensDoAcervo item, Cliente cliente) {
+    private Emprestimo(LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista,
+                       ItensDoAcervo item, Cliente cliente) {
         this.dataEmprestimo = dataEmprestimo;
         this.dataDevolucaoPrevista = dataDevolucaoPrevista;
-        this.dataDevolucaoReal = dataDevolucaoReal;
-        this.diasAtrasado = diasAtrasado;
+        this.dataDevolucaoReal = null;
+        this.diasAtrasado = 0;
         this.item = item;
         this.cliente = cliente;
     }
 
     /* Método principal para realizar o empréstimo */
 
-    public Emprestimo emprestar(Cliente cliente, ItensDoAcervo item) {
-        try {
-            if (!Emprestimo.estaDisponivel(item)) {
-                throw new IllegalArgumentException("O item" + item.getTitulo() + "está indisponível no momento," +
-                        "você foi adicionado para a lista de espera!");
-                //fazer lista de espera, decidir se ficara em emprestimo ou biblioteca
-            } else if (!Emprestimo.podePegar(cliente)) {
-                throw new IllegalArgumentException("Usuário suspenso ou com limite de empréstimos atingido");
-            }
+    public static Emprestimo emprestar(Cliente cliente, ItensDoAcervo item) { //importante ser static, o construtor ta
+                                                                              // dentro do método KJDAJDSA
+        if (!Emprestimo.estaDisponivel(item)) {
+            throw new IllegalArgumentException("O item" + item.getTitulo() + "está indisponível no momento :(");
+            //fazer lista de espera, decidir se ficara em emprestimo ou biblioteca
+        } else if (!Emprestimo.podePegar(cliente)) {
+            throw new IllegalArgumentException("Usuário suspenso ou com limite de empréstimos atingido");
+        }
 
-            dataEmprestimo = LocalDate.now(); // data do dia que foi realizado o empréstimo
-            dataDevolucaoPrevista = dataEmprestimo.plus(6);
-            diasAtrasado = 0; // variavel que só vai ser alterada se a data real for maior que a prevista
-            dataDevolucaoReal = null; // só vamos descobrir quando o devolver() for acionado
+        LocalDate hoje = LocalDate.now();
+        LocalDate previsao = hoje.plusDays(6);
+        item.setStatusItem(ItemStatus.EMPRESTADO);
 
-            Emprestimo emprestimo = new Emprestimo(dataEmprestimo, dataDevolucaoPrevista, dataDevolucaoReal,
-                    diasAtrasado, item, cliente);
+        return new Emprestimo(hoje, previsao, item, cliente);
 
-            return emprestimo;
-        } catch
     }
+
+    /*public void devolver() {
+        if (Emprestimo.estaDisponivel())
+    }*/
 
 
     /* Outros métodos */
 
-    public void registrarDevolucao(ItensDoAcervo item) {
+   /* public void registrarDevolucao(ItensDoAcervo item) {
         if  (item.getStatusItem() != ItemStatus.DISPONIVEL) {
             item.setStatusItem(ItemStatus.DISPONIVEL);
             System.out.println(item.getTitulo() + "foi devolvido com sucesso!");
         }
-    }
+    } */ // revisar esse método!!
 
     public static boolean estaDisponivel(ItensDoAcervo item) {
         return item.getStatusItem() == ItemStatus.DISPONIVEL;
@@ -70,7 +68,7 @@ public class Emprestimo {
     public static boolean podePegar(Cliente cliente) {
         if (cliente.getStatusCliente() == ClienteStatus.SEM_EMPRESTIMO) {
             return true;
-        } else if (cliente.getStatusCliente() == ClienteStatus.COM_EMPRESTIMO || cliente.qntEmprestimos() < 6) {
+        } else if (cliente.getStatusCliente() == ClienteStatus.COM_EMPRESTIMO && cliente.qntEmprestimos() < 6) {
             return true;
         } else {
             return false;
