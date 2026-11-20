@@ -24,6 +24,20 @@ public abstract class ItensDoAcervo {
         this.titulo = titulo;
     }
 
+    public boolean estaDisponivel() {
+        return getStatusItem() == ItemStatus.DISPONIVEL;
+    }
+
+    public ItemStatus checarDisponibilidade() {
+        if (getStatusItem() == ItemStatus.DISPONIVEL) {
+            return ItemStatus.DISPONIVEL;
+        } else if (getStatusItem() == ItemStatus.EMPRESTADO)
+            return ItemStatus.EMPRESTADO;
+    }
+
+
+    /* Getters */
+
     public String getCodigoDeRegistro() {
         return codigoDeRegistro;
     }

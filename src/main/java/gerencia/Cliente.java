@@ -20,8 +20,25 @@ public class Cliente {
         numeroEmprestimos = 0;
     }
 
+    public boolean podePegar() {
+        if (getStatusCliente() == ClienteStatus.SEM_EMPRESTIMO) {
+            return true;
+        } else if (getStatusCliente() == ClienteStatus.COM_EMPRESTIMO && qntEmprestimos() < 6) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /* Getters */
+
     public ClienteStatus getStatusCliente() {
         return statusCliente;
+    }
+
+    public void setStatusCliente(ClienteStatus statusCliente) {
+        this.statusCliente = statusCliente;
     }
 
     public String getNome() {
