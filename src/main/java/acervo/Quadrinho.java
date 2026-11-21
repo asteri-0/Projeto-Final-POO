@@ -17,6 +17,14 @@ public class Quadrinho extends ItensDoAcervo {
         this.editora = editora;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\n\t Editora: " + editora +
+                "\n\t ISBN: " + isbn +
+                "\n\t  N° de páginas: " + numeroDePaginas;
+    }
+
     public String getIsbn() {
         return isbn;
     }

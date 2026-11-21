@@ -15,6 +15,13 @@ public class Revista extends ItensDoAcervo {
         this.editora = editora;
     }
 
+    @Override
+    public String toString() {
+        return super.toString() +
+                "\n\t Editora: " + editora +
+                "\n\t N° de Páginas: " + numeroDePaginas;
+    }
+
     public int getNumeroDePaginas() {
         return numeroDePaginas;
     }

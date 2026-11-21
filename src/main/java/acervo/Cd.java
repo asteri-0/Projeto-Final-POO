@@ -13,6 +13,11 @@ public class Cd extends ItensDoAcervo {
     }
 
     @Override
+    public String toString() {
+        return super.toString() ;
+    }
+
+    @Override
     public ItemStatus getStatusItem() {
         return super.getStatusItem();
     }
