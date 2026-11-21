@@ -6,9 +6,9 @@ import enuns.ItemStatus;
 public class Cd extends ItensDoAcervo {
 
 
-    public Cd (String localizacao, String codigoDeRegistro, String titulo,
-                 int anoDePublicacao, CategoriaGenero generoCategoria, ItemStatus statusItem) {
-        super(localizacao,codigoDeRegistro, titulo, anoDePublicacao, generoCategoria, statusItem);
+    public Cd (String titulo, String codigoDeRegistro, int anoDePublicacao,
+               CategoriaGenero generoCategoria, ItemStatus statusItem) {
+        super(titulo, codigoDeRegistro, anoDePublicacao, generoCategoria, statusItem);
 
     }
 
@@ -40,11 +40,6 @@ public class Cd extends ItensDoAcervo {
     @Override
     public String getCodigoDeRegistro() {
         return super.getCodigoDeRegistro();
-    }
-
-    @Override
-    public String getLocalizacao() {
-        return super.getLocalizacao();
     }
 
     @Override

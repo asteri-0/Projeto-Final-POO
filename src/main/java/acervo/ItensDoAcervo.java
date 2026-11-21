@@ -7,7 +7,6 @@ import java.util.Locale;
 
 public abstract class ItensDoAcervo {
     //atributos da classe pai
-    private String localizacao;
     private String codigoDeRegistro;
     private String titulo;
     private int anoDePublicacao;
@@ -15,13 +14,13 @@ public abstract class ItensDoAcervo {
     private ItemStatus statusItem;
 
     //construtor
-    public ItensDoAcervo (String titulo, String localizacao, String codigoDeRegistrio,
+    public ItensDoAcervo (String titulo, String codigoDeRegistrio,
                           int anoDePublicacao, CategoriaGenero generoCategoria,
                           ItemStatus  statusItem) {
         this.anoDePublicacao = anoDePublicacao;
         this.codigoDeRegistro = codigoDeRegistrio;
         this.generoCategoria = generoCategoria;
-        this.localizacao = localizacao;
+        //this.localizacao = localizacao;
         this.statusItem = statusItem;
         this.titulo = titulo;
     }
@@ -38,7 +37,7 @@ public abstract class ItensDoAcervo {
     }*/
 
     public String toCSV() {
-        return getClass().getSimpleName().toUpperCase() + ";" + titulo + ";" + localizacao + ";" + codigoDeRegistro +
+        return getClass().getSimpleName().toUpperCase() + ";" + titulo  + ";" + codigoDeRegistro +
                 ";" + anoDePublicacao + ";" + generoCategoria + ";" + statusItem;
     }
 
@@ -47,7 +46,6 @@ public abstract class ItensDoAcervo {
         return  "\t Título: " + titulo +
                 "\n\t\t Ano de publicação: " + anoDePublicacao +
                 "\n\t\t Gênero/Categoria: " + generoCategoria +
-                "\n\t\t Localizacao:" + localizacao +
                 "\n\t\t Código de Registro: " + codigoDeRegistro +
                 "\n\t\t Status do  Item: " + statusItem;
     }
@@ -56,10 +54,6 @@ public abstract class ItensDoAcervo {
 
     public String getCodigoDeRegistro() {
         return codigoDeRegistro;
-    }
-
-    public String getLocalizacao() {
-        return localizacao;
     }
 
     public int getAnoDePublicacao() {

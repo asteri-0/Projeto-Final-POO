@@ -8,10 +8,9 @@ public class Livro extends ItensDoAcervo{
     private int numeroDePaginas;
     private String editora;
 
-    public Livro(String localizacao, String codigoDeRegistro, String titulo,
-                 int anoDePublicacao, CategoriaGenero generoCategoria, ItemStatus statusItem,
-                 String isbn, int numeroDePaginas, String editora) {
-        super(localizacao,codigoDeRegistro, titulo, anoDePublicacao, generoCategoria, statusItem);
+    public Livro(String titulo, String codigoDeRegistrio, int anoDePublicacao, CategoriaGenero generoCategoria,
+                 ItemStatus  statusItem, String isbn, int numeroDePaginas, String editora) {
+        super(titulo, codigoDeRegistrio, anoDePublicacao, generoCategoria, statusItem);
         this.isbn = isbn;
         this.numeroDePaginas = numeroDePaginas;
         this.editora = editora;
@@ -42,11 +41,6 @@ public class Livro extends ItensDoAcervo{
     @Override
     public String getCodigoDeRegistro() {
         return super.getCodigoDeRegistro();
-    }
-
-    @Override
-    public String getLocalizacao() {
-        return super.getLocalizacao();
     }
 
     @Override

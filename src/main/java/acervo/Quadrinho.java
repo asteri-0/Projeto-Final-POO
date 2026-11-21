@@ -8,10 +8,9 @@ public class Quadrinho extends ItensDoAcervo {
     private int numeroDePaginas;
     private String editora;
 
-    public Quadrinho (String localizacao, String codigoDeRegistro, String titulo,
-                 int anoDePublicacao, CategoriaGenero generoCategoria, ItemStatus statusItem,
-                 String isbn, int numeroDePaginas, String editora) {
-        super(localizacao,codigoDeRegistro, titulo, anoDePublicacao, generoCategoria, statusItem);
+    public Quadrinho (String titulo, String codigoDeRegistrio, int anoDePublicacao, CategoriaGenero generoCategoria,
+                        ItemStatus  statusItem, String isbn, int numeroDePaginas, String editora) {
+        super(titulo, codigoDeRegistrio, anoDePublicacao, generoCategoria, statusItem);
         this.isbn = isbn;
         this.numeroDePaginas = numeroDePaginas;
         this.editora = editora;
@@ -40,11 +39,6 @@ public class Quadrinho extends ItensDoAcervo {
 
     public String getEditora() {
         return editora;
-    }
-
-    @Override
-    public String getLocalizacao() {
-        return super.getLocalizacao();
     }
 
     @Override

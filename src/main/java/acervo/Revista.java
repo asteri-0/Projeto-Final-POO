@@ -7,10 +7,10 @@ public class Revista extends ItensDoAcervo {
     private int numeroDePaginas;
     private String editora;
 
-    public Revista (String localizacao, String codigoDeRegistro, String titulo,
+    public Revista (String codigoDeRegistro, String titulo,
                  int anoDePublicacao, CategoriaGenero generoCategoria, ItemStatus statusItem,
                     int numeroDePaginas, String editora) {
-        super(localizacao,codigoDeRegistro, titulo, anoDePublicacao, generoCategoria, statusItem);
+        super(codigoDeRegistro, titulo, anoDePublicacao, generoCategoria, statusItem);
         this.numeroDePaginas = numeroDePaginas;
         this.editora = editora;
     }
@@ -38,11 +38,6 @@ public class Revista extends ItensDoAcervo {
     @Override
     public String getTitulo() {
         return super.getTitulo();
-    }
-
-    @Override
-    public String getLocalizacao() {
-        return super.getLocalizacao();
     }
 
     @Override
