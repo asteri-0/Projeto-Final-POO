@@ -3,6 +3,8 @@ package acervo;
 import enuns.ItemStatus;
 import enuns.CategoriaGenero;
 
+import java.util.Locale;
+
 public abstract class ItensDoAcervo {
     //atributos da classe pai
     private String localizacao;
@@ -34,6 +36,11 @@ public abstract class ItensDoAcervo {
         } else if (getStatusItem() == ItemStatus.EMPRESTADO)
             return ItemStatus.EMPRESTADO;
     }*/
+
+    public String toCSV() {
+        return getClass().getSimpleName().toUpperCase() + ";" + titulo + ";" + localizacao + ";" + codigoDeRegistro +
+                ";" + anoDePublicacao + ";" + generoCategoria + ";" + statusItem;
+    }
 
     @Override
     public String toString() {

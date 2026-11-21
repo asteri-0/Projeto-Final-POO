@@ -25,6 +25,11 @@ public class Quadrinho extends ItensDoAcervo {
                 "\n\t\t  N° de páginas: " + numeroDePaginas;
     }
 
+    @Override
+    public String toCSV() {
+        return super.toCSV() + ";" + isbn + ";" + numeroDePaginas + ";" + editora;
+    }
+
     public String getIsbn() {
         return isbn;
     }

@@ -11,6 +11,9 @@ public class Cliente {
     private int numeroEmprestimos;
     private ClienteStatus statusCliente;
 
+
+    /* Construtor*/
+
     public Cliente (String nome, String cpf, String telefone,  LocalDate dataNascimento) {
         this.nome = nome;
         this.telefone = telefone;
@@ -19,6 +22,8 @@ public class Cliente {
         statusCliente = ClienteStatus.SEM_EMPRESTIMO;
         numeroEmprestimos = 0;
     }
+
+    /* Métodos principais*/
 
     public boolean podePegar() {
         if (getStatusCliente() == ClienteStatus.SEM_EMPRESTIMO) {
@@ -30,6 +35,19 @@ public class Cliente {
         }
     }
 
+    @Override
+    public String toString() {
+        return  "\t Nome: " + nome +
+                "\n\t\t CPF: " + cpf +
+                "\n\t\t Status: " + statusCliente;
+    }
+
+
+    /* Método para passar os atributos para o CSV*/
+
+    public String toCSV() {
+        return nome + ";" + cpf + ";" + telefone + ";" + dataNascimento + ";" + statusCliente + ";" + numeroEmprestimos;
+    }
 
     /* Getters */
 
@@ -61,10 +79,4 @@ public class Cliente {
         return  numeroEmprestimos;
     }
 
-    @Override
-    public String toString() {
-        return  "\t Nome: " + nome +
-                "\n\t\t CPF: " + cpf +
-                "\n\t\t Status: " + statusCliente;
-    }
 }

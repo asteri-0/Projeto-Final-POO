@@ -18,6 +18,11 @@ public class Cd extends ItensDoAcervo {
     }
 
     @Override
+    public String toCSV() {
+        return super.toCSV();
+    }
+
+    @Override
     public ItemStatus getStatusItem() {
         return super.getStatusItem();
     }

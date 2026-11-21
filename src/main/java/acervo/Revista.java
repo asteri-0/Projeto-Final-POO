@@ -22,6 +22,11 @@ public class Revista extends ItensDoAcervo {
                 "\n\t\t N° de Páginas: " + numeroDePaginas;
     }
 
+    @Override
+    public String toCSV() {
+        return super.toCSV() + ";" + numeroDePaginas + ";" + editora;
+    }
+
     public int getNumeroDePaginas() {
         return numeroDePaginas;
     }

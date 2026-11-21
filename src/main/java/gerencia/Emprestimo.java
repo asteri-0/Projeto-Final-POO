@@ -28,6 +28,7 @@ public class Emprestimo {
         this.cliente = cliente;
     }
 
+
     /* Método principal para realizar o empréstimo */
 
     public static Emprestimo emprestar(Cliente cliente, ItensDoAcervo item) { //importante ser static, o construtor ta
@@ -105,8 +106,14 @@ public class Emprestimo {
         return diasAtrasado * 2;
     }
 
-    /* Getters */
 
+
+    /* Para CSV */
+    public String toCSV() {
+        return dataEmprestimo + ";" + dataDevolucaoPrevista + ";" + item.getCodigoDeRegistro() + ";" + cliente.getCpf();
+    }
+
+    /* Getters */
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }

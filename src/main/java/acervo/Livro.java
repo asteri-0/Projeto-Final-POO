@@ -25,6 +25,11 @@ public class Livro extends ItensDoAcervo{
         "\n\t\t N° de Páginas: " + numeroDePaginas;
     }
 
+    @Override
+    public String toCSV() {
+        return super.toCSV() + ";" + isbn + ";" + numeroDePaginas + ";" + editora;
+    }
+
 
     public int getNumeroDePaginas() {
         return numeroDePaginas;
