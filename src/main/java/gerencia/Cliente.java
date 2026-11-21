@@ -60,4 +60,11 @@ public class Cliente {
     public int qntEmprestimos() {
         return  numeroEmprestimos;
     }
+
+    @Override
+    public String toString() {
+        return  "Nome: " + nome +
+                "\n\t CPF: " + cpf +
+                "\n\t Status: " + statusCliente;
+    }
 }
