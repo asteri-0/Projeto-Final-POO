@@ -17,7 +17,7 @@ public class Emprestimo {
     private Cliente cliente;
 
 
-    /* Construtor */
+    /* Construtor privado */
     private Emprestimo(LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista,
                        ItensDoAcervo item, Cliente cliente) {
         this.dataEmprestimo = dataEmprestimo;
@@ -32,10 +32,10 @@ public class Emprestimo {
 
     public static Emprestimo emprestar(Cliente cliente, ItensDoAcervo item) { //importante ser static, o construtor ta
                                                                               // dentro do método KJDAJDSA
-        if (!Emprestimo.estaDisponivel(item)) {
+        if (!item.estaDisponivel()) {
             throw new IllegalArgumentException("O item" + item.getTitulo() + "está indisponível no momento :(");
             //fazer lista de espera, decidir se ficara em emprestimo ou biblioteca
-        } else if (!Emprestimo.podePegar(cliente)) {
+        } else if (cliente.podePegar()) {
             throw new IllegalArgumentException("Usuário suspenso ou com limite de empréstimos atingido");
         }
 
@@ -47,40 +47,66 @@ public class Emprestimo {
 
     }
 
-    /*public void devolver() {
-        if (Emprestimo.estaDisponivel())
-    }*/
-
 
     /* Outros métodos */
 
-   /* public void registrarDevolucao(ItensDoAcervo item) {
-        if  (item.getStatusItem() != ItemStatus.DISPONIVEL) {
-            item.setStatusItem(ItemStatus.DISPONIVEL);
-            System.out.println(item.getTitulo() + "foi devolvido com sucesso!");
-        }
-    } */ // revisar esse método!!
+    public void devolver() {
 
-    public static boolean estaDisponivel(ItensDoAcervo item) {
-        return item.getStatusItem() == ItemStatus.DISPONIVEL;
-    }
-
-    public static boolean podePegar(Cliente cliente) {
-        if (cliente.getStatusCliente() == ClienteStatus.SEM_EMPRESTIMO) {
-            return true;
-        } else if (cliente.getStatusCliente() == ClienteStatus.COM_EMPRESTIMO && cliente.qntEmprestimos() < 6) {
-            return true;
-        } else {
-            return false;
+        if (item.getStatusItem() == ItemStatus.EMPRESTADO || item.getStatusItem() == ItemStatus.ATRASADO){
+            if (cliente.getStatusCliente() == ClienteStatus.COM_EMPRESTIMO) {
+             item.setStatusItem(ItemStatus.DISPONIVEL);
+             dataDevolucaoReal = LocalDate.now();
+             calcularAtraso();
+            }
         }
     }
+
+    public void calcularAtraso() {
+        LocalDate hoje = LocalDate.now();
+        if (item.getStatusItem() == ItemStatus.EMPRESTADO && dataDevolucaoPrevista.isAfter(hoje)) {
+            diasAtrasado = ChronoUnit.DAYS.between(dataDevolucaoPrevista, hoje);
+            item.setStatusItem(ItemStatus.ATRASADO);
+            cliente.setStatusCliente(ClienteStatus.SUSPENSO);
+             calculaValorMulta();
+             calculaTempoSuspensao();
+
+            System.out.println("O item "  + item.getTitulo() + " está atrasado a " + diasAtrasado + "dias.");
+
+        } else if (item.getStatusItem() == ItemStatus.EMPRESTADO && dataDevolucaoPrevista.isBefore(hoje)) {
+                LocalDate ateDevolucao = LocalDate.ofEpochDay(ChronoUnit.DAYS.between(dataDevolucaoPrevista, hoje));
+                System.out.println("O item " + item.getTitulo() + " está em dia, devolver em "
+                        + ateDevolucao + " dias.");
+
+        } else if (item.getStatusItem() == ItemStatus.EMPRESTADO && dataDevolucaoPrevista.isEqual(hoje)){
+            System.out.println("O item " + item.getTitulo() + " deve ser devolvido hoje.");
+
+        } else if (item.getStatusItem() == ItemStatus.DISPONIVEL) {
+            System.out.println("O item " + item.getTitulo() + " não está emprestado.");
+        }
+    }
+
+    /*public void calcularDiasAtraso(LocalDate previsao, LocalDate atual) {
+        if (atual.isAfter(previsao))
+    } */
 
     public boolean estaAtrasado() {
         return dataDevolucaoReal.isAfter(dataDevolucaoPrevista);
     }
 
+    public double calculaValorMulta() {
+        diasAtrasado = ChronoUnit.DAYS.between(dataDevolucaoPrevista, dataDevolucaoReal);
+
+        return diasAtrasado * 1.5;
+    }
+
+    public double calculaTempoSuspensao() {
+        diasAtrasado = ChronoUnit.DAYS.between(dataDevolucaoPrevista, dataDevolucaoReal);
+
+        return diasAtrasado * 2;
+    }
 
     /* Getters */
+
     public LocalDate getDataEmprestimo() {
         return dataEmprestimo;
     }
@@ -93,16 +119,18 @@ public class Emprestimo {
         return diasAtrasado = ChronoUnit.DAYS.between(dataDevolucaoPrevista, dataDevolucaoReal);
     }
 
-    public double getValorMulta() {
-        diasAtrasado = ChronoUnit.DAYS.between(dataDevolucaoPrevista, dataDevolucaoReal);
-
-        return diasAtrasado * 1.5;
+    public String getNomeCliente() {
+        return getNomeCliente();
     }
 
-    public double getTempoSuspensao() {
-        diasAtrasado = ChronoUnit.DAYS.between(dataDevolucaoPrevista, dataDevolucaoReal);
-
-        return diasAtrasado * 2;
+    @Override
+    public String toString() {
+        return "Sobre o empréstimo: " +
+                "\n\t Data do emprestimo: " + dataEmprestimo +
+                "\n\t Devolução em: " + dataDevolucaoPrevista +
+                "\n\t Item: " + item.getClass().getSimpleName() +
+                "\n\t " + item +
+                "\n\t Cliente: " +
+                "\n\t " + cliente.toString();
     }
-
 }
