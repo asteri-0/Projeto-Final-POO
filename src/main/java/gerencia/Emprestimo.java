@@ -35,7 +35,7 @@ public class Emprestimo {
         if (!item.estaDisponivel()) {
             throw new IllegalArgumentException("O item" + item.getTitulo() + "está indisponível no momento :(");
             //fazer lista de espera, decidir se ficara em emprestimo ou biblioteca
-        } else if (cliente.podePegar()) {
+        } else if (!cliente.podePegar()) {
             throw new IllegalArgumentException("Usuário suspenso ou com limite de empréstimos atingido");
         }
 

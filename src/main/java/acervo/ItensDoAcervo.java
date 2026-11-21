@@ -38,11 +38,11 @@ public abstract class ItensDoAcervo {
     @Override
     public String toString() {
         return  "\t Título: " + titulo +
-                "\n\t Ano de publicação: " + anoDePublicacao +
-                "\n\t Gênero/Categoria: " + generoCategoria +
-                "\n\t Localizacao:" + localizacao +
-                "\n\t Código de Registro: " + codigoDeRegistro +
-                "\n\t Status do  Item: " + statusItem;
+                "\n\t\t Ano de publicação: " + anoDePublicacao +
+                "\n\t\t Gênero/Categoria: " + generoCategoria +
+                "\n\t\t Localizacao:" + localizacao +
+                "\n\t\t Código de Registro: " + codigoDeRegistro +
+                "\n\t\t Status do  Item: " + statusItem;
     }
 
     /* Getters */

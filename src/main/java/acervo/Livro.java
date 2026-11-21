@@ -20,9 +20,9 @@ public class Livro extends ItensDoAcervo{
     @Override
     public String toString() {
         return super.toString() +
-        "\n\t Editora: " + editora +
-        "\n\t ISBN: " + isbn +
-        "\n\t N° de Páginas: " + numeroDePaginas;
+        "\n\t\t Editora: " + editora +
+        "\n\t\t ISBN: " + isbn +
+        "\n\t\t N° de Páginas: " + numeroDePaginas;
     }
 
 

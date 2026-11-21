@@ -9,10 +9,10 @@ import java.time.LocalDate;
 public class Run {
 
     public static void main(String[] args) {
-        Livro livro1 = new Livro("blabla", "123", "Biblia",
+        Livro livro1 = new Livro("blabla", "123", "Macacos Voadores",
                 1, CategoriaGenero.FICCAO_CIENTIFICA, ItemStatus.DISPONIVEL,
-                "isbn1", 1000, "Deus" );
-        Cliente cliente1 = new Cliente("Raul Pierre", "111.111.111-11", "18 91234-5678",
+                "isbn1", 1000, "Bananas" );
+        Cliente cliente1 = new Cliente("Claudinho", "111.111.111-11", "18 91234-5678",
                 LocalDate.of(2007, 4, 23));
         Biblioteca biblis = new Biblioteca();
 

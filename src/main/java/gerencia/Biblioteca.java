@@ -21,8 +21,8 @@ public class Biblioteca {
         try { //tenta fazer um emprestimo
             Emprestimo novo = Emprestimo.emprestar(cliente, item);
             emprestimos.add(novo);
-            System.out.println("Emprestimo realizado com sucesso!");
-            System.out.println("Devolução em: " + novo.getDataDevolucaoPrevista());
+            System.out.println("Empréstimo realizado com sucesso!");
+            System.out.println("Devolução em: " + novo.getDataDevolucaoPrevista() + "\n");
         } catch (IllegalStateException e ) {
             System.out.println("Não foi possível criar o objeto empréstimo.");
         }

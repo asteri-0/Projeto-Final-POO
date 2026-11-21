@@ -63,8 +63,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return  "Nome: " + nome +
-                "\n\t CPF: " + cpf +
-                "\n\t Status: " + statusCliente;
+        return  "\t Nome: " + nome +
+                "\n\t\t CPF: " + cpf +
+                "\n\t\t Status: " + statusCliente;
     }
 }
