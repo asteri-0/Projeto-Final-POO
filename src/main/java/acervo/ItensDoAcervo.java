@@ -28,13 +28,22 @@ public abstract class ItensDoAcervo {
         return getStatusItem() == ItemStatus.DISPONIVEL;
     }
 
-    public ItemStatus checarDisponibilidade() {
+    /*public ItemStatus checarDisponibilidade() {
         if (getStatusItem() == ItemStatus.DISPONIVEL) {
             return ItemStatus.DISPONIVEL;
         } else if (getStatusItem() == ItemStatus.EMPRESTADO)
             return ItemStatus.EMPRESTADO;
-    }
+    }*/
 
+    @Override
+    public String toString() {
+        return  "\t Título: " + titulo +
+                "\n\t Ano de publicação: " + anoDePublicacao +
+                "\n\t Gênero/Categoria: " + generoCategoria +
+                "\n\t Localizacao:" + localizacao +
+                "\n\t Código de Registro: " + codigoDeRegistro +
+                "\n\t Status do  Item: " + statusItem;
+    }
 
     /* Getters */
 
