@@ -7,10 +7,10 @@ public class Revista extends ItensDoAcervo {
     private int numeroDePaginas;
     private String editora;
 
-    public Revista (String codigoDeRegistro, String titulo,
+    public Revista (String titulo, String codigoDeRegistro,
                  int anoDePublicacao, CategoriaGenero generoCategoria, ItemStatus statusItem,
                     int numeroDePaginas, String editora) {
-        super(codigoDeRegistro, titulo, anoDePublicacao, generoCategoria, statusItem);
+        super(titulo, codigoDeRegistro, anoDePublicacao, generoCategoria, statusItem);
         this.numeroDePaginas = numeroDePaginas;
         this.editora = editora;
     }

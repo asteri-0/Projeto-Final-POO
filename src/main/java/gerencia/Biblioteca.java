@@ -4,6 +4,7 @@ import acervo.ItensDoAcervo;
 import acervo.Livro;
 import enuns.CategoriaGenero;
 import enuns.ItemStatus;
+import persistencia.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -11,9 +12,14 @@ import java.util.ArrayList;
 
 public class Biblioteca {
     private List<Emprestimo> emprestimos;
+    private List<Cliente> clientes;
+    private List<ItensDoAcervo> acervo;
+
 
     public Biblioteca() {
         this.emprestimos = new ArrayList<Emprestimo>();
+        this.clientes = new ArrayList<Cliente>();
+        this.acervo = new ArrayList<ItensDoAcervo>();
 
     }
 
@@ -42,6 +48,11 @@ public class Biblioteca {
         }
     }
 
+    public void salvarDados() {
+        GerenciadorCSV.salvarAcervo(this.acervo);
+        GerenciadorCSV.salvarCliente(this.clientes);
+        GerenciadorCSV.salvarEmprestimo(this.emprestimos);
+    }
 
 
 }

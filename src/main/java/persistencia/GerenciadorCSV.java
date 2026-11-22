@@ -13,14 +13,14 @@ import java.util.List;
 
 public class GerenciadorCSV {
 
-    public static void salvarAcervo(List<ItensDoAcervo> acervo) throws IOException {
+    public static void salvarAcervo(List<ItensDoAcervo> acervo) {
         Path caminho = Path.of("dados/acervo.csv");
 
         try {
             Files.createDirectories(caminho.getParent());
 
             try (BufferedWriter writer = Files.newBufferedWriter(caminho, StandardCharsets.UTF_8)) {
-                writer.write("TIPO;TITULO;ANO_PUBLICACAO;GENERO;STATUS;EXTRAS");
+                writer.write("TIPO;TITULO;COD_ITEM;ANO_PUBLICACAO;GENERO;STATUS;EXTRAS");
                 writer.newLine();
 
                 for (ItensDoAcervo item : acervo) {
@@ -49,7 +49,7 @@ public class GerenciadorCSV {
                 }
             }
         } catch (IOException e) {
-            System.err.println("Erro ao salvar o acervo: " + e.getMessage());
+            System.err.println("Erro ao salvar o cliente: " + e.getMessage());
 
         }
     }
@@ -63,9 +63,14 @@ public class GerenciadorCSV {
             try (BufferedWriter writer = Files.newBufferedWriter(caminho, StandardCharsets.UTF_8)) {
                 writer.write("DATA_EMPRESTIMO;DEVOLUCAO_PREVISTA;COD_ITEM;CPF_CLIENTE");
                 writer.newLine();
+
+                for (Emprestimo emprestimo : emprestimos) {
+                    writer.write(emprestimo.toCSV());
+                    writer.newLine();
+                }
             }
         } catch (IOException e) {
-            System.err.println("Erro ao salvar o acervo: " + e.getMessage());
+            System.err.println("Erro ao salvar o emprestimo: " + e.getMessage());
 
         }
     }
