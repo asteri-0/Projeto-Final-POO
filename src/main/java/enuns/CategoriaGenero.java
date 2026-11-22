@@ -21,6 +21,14 @@ public enum CategoriaGenero {
     ATUALIDADES,
     INFANTOJUVENIL,
     PORTUGUES,
-
+    AVENTURA,
+    BIOGRAFIA,
+    CIENCIA,
+    FANTASIA,
+    FICCAO,
+    HISTORIA,
+    SUSPENSE,
+    TECNOLOGIA,
+    TERROR
 }
 
