@@ -10,12 +10,18 @@ public class Run {
 
     public static void main(String[] args) {
 
-        Biblioteca biblis = new Biblioteca();
+        Biblioteca biblioteca = new Biblioteca();
+        biblioteca.carregarDados();
 
-        biblis.registrarEmprestimo(cliente1, livro1);
-        biblis.mostrarEmprestimos();
+        ItensDoAcervo item = biblioteca.buscarItemPorCodigo("L01");
+        Cliente cliente = biblioteca.buscarClientePorCpf("117.231.343-17");
 
-        biblis.salvarDados();
+        if (item != null && cliente != null) {
+            biblioteca.registrarEmprestimo(cliente, item);
+        }
+
+        biblioteca.mostrarEmprestimos();
+        biblioteca.salvarDados();
 
 
     }

@@ -12,15 +12,20 @@ public class Cliente {
     private ClienteStatus statusCliente;
 
 
-    /* Construtor*/
+    /* Construtores - Sobrecarga */
 
-    public Cliente (String nome, String cpf, String telefone,  LocalDate dataNascimento) {
+    public Cliente(String nome, String cpf, String telefone, LocalDate dataNascimento) {
+        this(nome, cpf, telefone, dataNascimento, ClienteStatus.SEM_EMPRESTIMO, 0);
+    }
+
+    public Cliente(String nome, String cpf, String telefone, LocalDate dataNascimento,
+                   ClienteStatus statusCliente, int numeroEmprestimos) {
         this.nome = nome;
-        this.telefone = telefone;
         this.cpf = cpf;
+        this.telefone = telefone;
         this.dataNascimento = dataNascimento;
-        statusCliente = ClienteStatus.SEM_EMPRESTIMO;
-        numeroEmprestimos = 0;
+        this.statusCliente = statusCliente;
+        this.numeroEmprestimos = numeroEmprestimos;
     }
 
     /* Métodos principais*/

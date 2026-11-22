@@ -20,6 +20,7 @@ public class Biblioteca {
         this.emprestimos = new ArrayList<Emprestimo>();
         this.clientes = new ArrayList<Cliente>();
         this.acervo = new ArrayList<ItensDoAcervo>();
+        carregarDados();
 
     }
 
@@ -53,6 +54,32 @@ public class Biblioteca {
         GerenciadorCSV.salvarCliente(this.clientes);
         GerenciadorCSV.salvarEmprestimo(this.emprestimos);
     }
+
+    public ItensDoAcervo buscarItemPorCodigo(String codigo) {
+        for (ItensDoAcervo item : acervo) {
+            if (item.getCodigoDeRegistro().equalsIgnoreCase(codigo)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    public Cliente buscarClientePorCpf(String cpf) {
+        for (Cliente cliente : clientes) {
+            if (cliente.getCpf().equals(cpf)) {
+                return cliente;
+            }
+        }
+        return null;
+    }
+
+    public void carregarDados() {
+        this.acervo = GerenciadorCSV.carregarAcervo();
+        this.clientes = GerenciadorCSV.carregarCliente();
+        this.emprestimos = GerenciadorCSV.carregarEmprestimo(this.acervo, this.clientes);
+    }
+
+
 
 
 }

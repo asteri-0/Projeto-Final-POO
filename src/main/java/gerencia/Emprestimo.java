@@ -18,6 +18,7 @@ public class Emprestimo {
 
 
     /* Construtor privado */
+
     private Emprestimo(LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista,
                        ItensDoAcervo item, Cliente cliente) {
         this.dataEmprestimo = dataEmprestimo;
@@ -48,6 +49,11 @@ public class Emprestimo {
 
     }
 
+    /* Método para reconstruir empréstimo a partir do CSV */
+    public static Emprestimo reconstruir(LocalDate dataEmprestimo, LocalDate dataDevolucaoPrevista,
+                                         ItensDoAcervo item, Cliente cliente) {
+        return new Emprestimo(dataEmprestimo, dataDevolucaoPrevista, item, cliente);
+    }
 
     /* Outros métodos */
 
